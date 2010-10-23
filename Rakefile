@@ -1,17 +1,17 @@
 require 'rubygems'
 require 'rake'
+require 'bundler'
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rack-mongrel2"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "darkhelmet@darkhelmetlive.com"
-    gem.homepage = "http://github.com/darkhelmet/rack-mongrel2"
-    gem.authors = ["Daniel Huckstep"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_development_dependency "yard", ">= 0"
+    gem.summary = %Q{The only Mongrel2 Rack handler you'll ever need.}
+    gem.description = %Q{A Rack handler for the Mongrel2 web server, by Zed Shaw. http://mongrel2.org/}
+    gem.email = 'darkhelmet@darkhelmetlive.com'
+    gem.homepage = 'http://github.com/darkhelmet/rack-mongrel2'
+    gem.authors = ['Daniel Huckstep']
+    gem.add_bundler_dependencies
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -19,16 +19,16 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.ruby_opts = ['-Ilib', '-Ispec']
+  t.pattern = 'spec/**/*_spec.rb'
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
+RSpec::Core::RakeTask.new(:rcov) do |t|
+  t.ruby_opts = ['-Ilib', '-Ispec']
+  t.pattern = 'spec/**/*_spec.rb'
+  t.rcov = true
 end
 
 task :spec => :check_dependencies
@@ -40,6 +40,6 @@ begin
   YARD::Rake::YardocTask.new
 rescue LoadError
   task :yardoc do
-    abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
+    abort 'YARD is not available. In order to run yardoc, you must: `gem i yard`'
   end
 end
