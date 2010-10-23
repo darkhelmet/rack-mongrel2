@@ -26,7 +26,12 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "lib/mongrel2/connection.rb",
+     "lib/mongrel2/request.rb",
+     "lib/mongrel2/response.rb",
      "lib/rack-mongrel2.rb",
+     "lib/rack/handler/mongrel2.rb",
+     "rack-mongrel2.gemspec",
      "spec/rack-mongrel2_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
