@@ -1,3 +1,5 @@
+require 'yajl'
+
 module Mongrel2
   class Request
     attr_reader :headers, :body, :uuid, :conn_id
