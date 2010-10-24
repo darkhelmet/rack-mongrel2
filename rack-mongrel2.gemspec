@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rack-mongrel2}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Huckstep"]
@@ -27,8 +27,11 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "example/mongrel2.conf",
+     "example/sinatra/.gitignore",
      "example/sinatra/app.rb",
      "example/sinatra/config.ru",
+     "example/sinatra/mongrel2.conf",
+     "lib/mongrel2.rb",
      "lib/mongrel2/connection.rb",
      "lib/mongrel2/request.rb",
      "lib/mongrel2/response.rb",
@@ -53,21 +56,21 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<yajl-ruby>, ["~> 0.7.8"])
-      s.add_runtime_dependency(%q<zmq>, ["~> 2.0.9"])
+      s.add_runtime_dependency(%q<ffi>, ["~> 0.6.3"])
+      s.add_runtime_dependency(%q<ffi-rzmq>, ["~> 0.6.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.4.0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.0.1"])
       s.add_development_dependency(%q<yard>, ["~> 0.6.1"])
     else
-      s.add_dependency(%q<yajl-ruby>, ["~> 0.7.8"])
-      s.add_dependency(%q<zmq>, ["~> 2.0.9"])
+      s.add_dependency(%q<ffi>, ["~> 0.6.3"])
+      s.add_dependency(%q<ffi-rzmq>, ["~> 0.6.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.4.0"])
       s.add_dependency(%q<rspec>, ["~> 2.0.1"])
       s.add_dependency(%q<yard>, ["~> 0.6.1"])
     end
   else
-    s.add_dependency(%q<yajl-ruby>, ["~> 0.7.8"])
-    s.add_dependency(%q<zmq>, ["~> 2.0.9"])
+    s.add_dependency(%q<ffi>, ["~> 0.6.3"])
+    s.add_dependency(%q<ffi-rzmq>, ["~> 0.6.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.4.0"])
     s.add_dependency(%q<rspec>, ["~> 2.0.1"])
     s.add_dependency(%q<yard>, ["~> 0.6.1"])
