@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'yajl/json_gem'
 
 get '*' do
   items = request.env.map do |k,v|
@@ -17,7 +16,7 @@ get '*' do
         </ul>
         <hr />
         <h1>Params</h1>
-        #{params.to_json}
+        #{params}
       </body>
     </html>
   }

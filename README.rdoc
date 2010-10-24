@@ -2,7 +2,7 @@
 
 The only Mongrel2 Rack handler you'll ever need.
 
-I wrote this because I wanted to learn Mongrel2, and I didn't like what was out there. I copy-pasted a lot of code from Colin Curtin's m2r project (http://github.com/perplexes/m2r), but I also changed and reorganized it into what I believe is a good setup for a proper rubygem. I used the ruby zmq library instead of the ffi version, so we'll see how that works out.
+I wrote this because I wanted to learn Mongrel2, and I didn't like what was out there. I copy-pasted a lot of code from Colin Curtin's m2r project (http://github.com/perplexes/m2r), but I also changed and reorganized it into what I believe is a good setup for a proper rubygem.
 
 == How to use
 
@@ -12,12 +12,13 @@ I wrote this because I wanted to learn Mongrel2, and I didn't like what was out 
 
     gem 'rack-mongrel2', '~> 0.1.0', :require => nil
 
-4. Run Mongrel2
-5. Run your rails application
+4. You also need some sort of JSON parsing library installed, like Yajl or JSON (gem i yajl-ruby or gem i json). json-jruby will work too
+5. Run Mongrel2
+6. Run your rails application
 
     RACK_MONGREL2_UUID=<my uuid> rails s Mongrel2
 
-6. Profit!
+7. Profit!
 
 I'll write a better blog post soon...
 

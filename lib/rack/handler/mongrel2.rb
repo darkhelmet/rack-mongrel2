@@ -19,7 +19,7 @@ module Rack
 
           running = true
 
-          # This doesn't work at all for some reason
+          # This doesn't work at all until zmq fixes their shit
           %w(INT TERM).each do |sig|
             trap(sig) do
               conn.close

@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-gem 'yajl-ruby', '~> 0.7.8', :require => 'yajl'
 gem 'ffi', '~> 0.6.3'
 gem 'ffi-rzmq', '~> 0.6.0'
 
