@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'yajl-ruby', '~> 0.7.8', :require => 'yajl'
-gem 'zmq', '~> 2.0.9'
+gem 'ffi', '~> 0.6.3'
+gem 'ffi-rzmq', '~> 0.6.0'
 
 group :development do
   gem 'jeweler', '~> 1.4.0'

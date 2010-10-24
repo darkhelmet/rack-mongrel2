@@ -1,4 +1,4 @@
-require 'zmq'
+require 'ffi-rzmq'
 require 'mongrel2/request'
 require 'mongrel2/response'
 
@@ -20,7 +20,7 @@ module Mongrel2
     end
 
     def recv
-      msg = @reqs.recv(@block ? 0 : ZMQ::NOBLOCK)
+      msg = @reqs.recv_string(@block ? 0 : ZMQ::NOBLOCK)
       msg.nil? ? nil : Request.parse(msg)
     end
 
