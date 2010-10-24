@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rack-mongrel2}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Huckstep"]
-  s.date = %q{2010-10-23}
+  s.date = %q{2010-10-24}
   s.description = %q{A Rack handler for the Mongrel2 web server, by Zed Shaw. http://mongrel2.org/}
   s.email = %q{darkhelmet@darkhelmetlive.com}
   s.extra_rdoc_files = [
@@ -26,10 +26,12 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "example/mongrel2.conf",
+     "example/sinatra/app.rb",
+     "example/sinatra/config.ru",
      "lib/mongrel2/connection.rb",
      "lib/mongrel2/request.rb",
      "lib/mongrel2/response.rb",
-     "lib/rack-mongrel2.rb",
      "lib/rack/handler/mongrel2.rb",
      "rack-mongrel2.gemspec",
      "spec/rack-mongrel2_spec.rb",
