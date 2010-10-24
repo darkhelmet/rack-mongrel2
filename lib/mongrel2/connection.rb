@@ -28,8 +28,8 @@ module Mongrel2
     end
 
     def close
-      @reqs.close rescue nil
-      @resp.close rescue nil
+      # I think I should be able to just close the context
+      CTX.close rescue nil
     end
   end
 end
