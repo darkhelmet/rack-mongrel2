@@ -1,9 +1,28 @@
 = rack-mongrel2
 
-Description goes here.
+The only Mongrel2 Rack handler you'll ever need.
+
+I wrote this because I wanted to learn Mongrel2, and I didn't like what was out there. I copy-pasted a lot of code from Colin Curtin's m2r project (http://github.com/perplexes/m2r), but I also changed and reorganized it into what I believe is a good setup for a proper rubygem. I used the ruby zmq library instead of the ffi version, so we'll see how that works out.
+
+== How to use
+
+1. Get mongrel2 installed (http://mongrel2.org/wiki?name=GettingStarted)
+2. Get your config for mongrel2 setup (see example directory)
+3. Add it to your Gemfile
+
+    gem 'rack-mongrel2', '~> 0.1.0', :require => nil
+
+4. Run Mongrel2
+5. Run your rails application
+
+    RACK_MONGREL2_UUID=<my uuid> rails s Mongrel2
+
+6. Profit!
+
+I'll write a better blog post soon...
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
