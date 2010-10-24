@@ -20,7 +20,8 @@ module Mongrel2
     end
 
     def recv
-      Request.parse(@reqs.recv)
+      msg = @reqs.recv(@block ? 0 : ZMQ::NOBLOCK)
+      msg.nil? ? nil : Request.parse(msg)
     end
 
     def reply(req, body, status = 200, headers = {})

@@ -9,25 +9,29 @@ module Rack
           options = {
             :recv => 'tcp://127.0.0.1:9997' || ENV['RACK_MONGREL2_RECV'],
             :send => 'tcp://127.0.0.1:9996' || ENV['RACK_MONGREL2_SEND'],
-            :uuid => ENV['RACK_MONGREL2_UUID']
+            :uuid => ENV['RACK_MONGREL2_UUID'],
+            :block => ENV['RACK_MONGREL2_NONBLOCK'].to_s.match(/1|t(?:rue)?|y(?:es)/i).nil?
           }.merge(options)
+
           raise ArgumentError.new('Must specify an :uuid or set RACK_MONGREL2_UUID') if options[:uuid].nil?
 
-          conn = ::Mongrel2::Connection.new(options[:uuid], options[:recv], options[:send])
+          conn = ::Mongrel2::Connection.new(options[:uuid], options[:recv], options[:send], options[:block])
 
           running = true
 
           # This doesn't work at all for some reason
           %w(INT TERM).each do |sig|
             trap(sig) do
+              conn.close
               running = false
             end
           end
 
           while running
             req = conn.recv
-            next if req.disconnect?
-            return unless running
+            sleep(1) and next if req.nil? && options[:block]
+            next if req.nil? || req.disconnect?
+            return if !running
 
             script_name = ENV['RACK_RELATIVE_URL_ROOT'] || req.headers['PATTERN'].split('(', 2).first.gsub(/\/$/, '')
             env = {

@@ -3,8 +3,8 @@ require 'yajl/json_gem'
 
 get '*' do
   items = request.env.map do |k,v|
-    "<li><strong>#{k}</strong>: #{v}</li>\n"
-  end
+    "<li><strong>#{k}</strong>: #{v}</li>"
+  end.join("\n")
   %Q{
     <html>
       <head>
