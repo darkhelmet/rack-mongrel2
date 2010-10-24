@@ -39,13 +39,13 @@ module Rack
               'REQUEST_METHOD' => req.headers['METHOD'],
               'SCRIPT_NAME' => script_name,
               'PATH_INFO' => req.headers['PATH'].gsub(script_name, ''),
-              'QUERY_STRING' => req.headers['QUERY']
+              'QUERY_STRING' => req.headers['QUERY'] || ''
             }
 
             env['SERVER_NAME'], env['SERVER_PORT'] = req.headers['host'].split(':', 2)
             req.headers.each do |key, val|
               unless key =~ /content_(type|length)/i
-                key = "HTTP_#{key.upcase}"
+                key = "HTTP_#{key.upcase.gsub('-', '_')}"
               end
               env[key] = val
             end
