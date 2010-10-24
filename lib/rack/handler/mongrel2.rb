@@ -16,9 +16,12 @@ module Rack
           conn = ::Mongrel2::Connection.new(options[:uuid], options[:recv], options[:send])
 
           running = true
-          trap('SIGINT') do
-            running = false
-            conn.close
+
+          # This doesn't work at all for some reason
+          %w(INT TERM).each do |sig|
+            trap(sig) do
+              running = false
+            end
           end
 
           while running
