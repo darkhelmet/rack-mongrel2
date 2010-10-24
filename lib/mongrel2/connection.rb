@@ -6,8 +6,8 @@ module Mongrel2
   class Connection
     CTX = ZMQ::Context.new(1)
 
-    def initialize(ident, sub, pub, block = true)
-      @ident, @sub, @pub, @block = ident, sub, pub, block
+    def initialize(uuid, sub, pub, block = true)
+      @uuid, @sub, @pub, @block = uuid, sub, pub, block
 
       # Connect to receive requests
       @reqs = CTX.socket(ZMQ::UPSTREAM)
@@ -16,7 +16,7 @@ module Mongrel2
       # Connect to send responses
       @resp = CTX.socket(ZMQ::PUB)
       @resp.connect(pub)
-      @resp.setsockopt(ZMQ::IDENTITY, ident)
+      @resp.setsockopt(ZMQ::IDENTITY, uuid)
     end
 
     def recv
