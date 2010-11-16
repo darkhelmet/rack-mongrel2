@@ -25,11 +25,12 @@ module Mongrel2
     end
 
     def reply(req, body, status = 200, headers = {})
-      Response.new(@resp).send_http(req, body, status, headers)
+      Response.new(@resp)send_http(req, body, status, headers)
     end
 
     def close
       # I think I should be able to just close the context
+      @resp.send_string('%s 0:, %s' % [@uuid, ""])
       CTX.close rescue nil
     end
   end

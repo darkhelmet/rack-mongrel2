@@ -21,3 +21,4 @@ pkg
 ## PROJECT::SPECIFIC
 .bundle/
 *.rbc
+Gemfile.lock

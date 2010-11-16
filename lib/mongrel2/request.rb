@@ -2,7 +2,7 @@ require 'mongrel2'
 
 module Mongrel2
   class Request
-    attr_reader :headers, :body, :uuid, :conn_id
+    attr_reader :headers, :body, :uuid, :conn_id, :path
 
     class << self
       def parse(msg)

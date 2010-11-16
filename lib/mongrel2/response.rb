@@ -50,6 +50,10 @@ module Mongrel2
     def send_http(req, body, status, headers)
       send_resp(req.uuid, req.conn_id, build_http_response(body, status, headers))
     end
+    
+    def close(req)
+      send_resp(req.uuid, req.conn_id, "")
+    end
 
   private
 

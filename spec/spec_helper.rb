@@ -1,9 +1,12 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'rack-mongrel2'
-require 'spec'
-require 'spec/autorun'
+require 'mongrel2'
+require 'mongrel2/connection'
+require 'mongrel2/request'
+require 'mongrel2/response'
+require 'rspec'
+require 'rspec/autorun'
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   
 end
