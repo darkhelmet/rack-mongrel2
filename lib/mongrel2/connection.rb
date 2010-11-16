@@ -10,7 +10,7 @@ module Mongrel2
       @uuid, @sub, @pub, @block = uuid, sub, pub, block
 
       # Connect to receive requests
-      @reqs = CTX.socket(ZMQ::UPSTREAM)
+      @reqs = CTX.socket(ZMQ::PULL)
       @reqs.connect(sub)
 
       # Connect to send responses
@@ -26,11 +26,11 @@ module Mongrel2
 
     def reply(req, body, status = 200, headers = {})
       Response.new(@resp).send_http(req, body, status, headers)
+      @resp.send_string('%s %d:%s, %s' % [req.uuid, req.conn_id.size, req.conn_id, ""])
     end
 
     def close
       # I think I should be able to just close the context
-      @resp.send_string('%s 0:, %s' % [@uuid, ""])
       CTX.close rescue nil
     end
   end
