@@ -1,1 +1,1 @@
-rvm use 1.9.2@rack-mongrel2
+rvm use jruby@rack-mongrel2
