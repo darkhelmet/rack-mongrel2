@@ -10,5 +10,5 @@ end
 
 module Mongrel2
   JSON = Object.const_defined?('Yajl') ? ::Yajl::Parser : ::JSON
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 end
