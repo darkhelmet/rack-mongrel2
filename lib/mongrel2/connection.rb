@@ -10,7 +10,7 @@ module Mongrel2
       @uuid, @sub, @pub, @block = uuid, sub, pub, block
 
       # Connect to receive requests
-      @reqs = CTX.socket(ZMQ::UPSTREAM)
+      @reqs = CTX.socket(ZMQ::PULL)
       @reqs.connect(sub)
 
       # Connect to send responses
