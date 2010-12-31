@@ -43,13 +43,12 @@ end
 #
 #############################################################################
 
-task :default => :test
+task :default => :spec
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.ruby_opts = ['-Ilib', '-Ispec']
+  t.pattern = 'spec/**/*_spec.rb'
 end
 
 desc "Open an irb session preloaded with this library"
@@ -63,24 +62,14 @@ end
 #
 #############################################################################
 
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.ruby_opts = ['-Ilib', '-Ispec']
-  t.pattern = 'spec/**/*_spec.rb'
+begin
+  require 'yard'
+  YARD::Rake::YardocTask.new
+rescue LoadError
+  task :yardoc do
+    abort 'YARD is not available. In order to run yardoc, you must: `gem i yard`'
+  end
 end
-
-RSpec::Core::RakeTask.new(:rcov) do |t|
-  t.ruby_opts = ['-Ilib', '-Ispec']
-  t.pattern = 'spec/**/*_spec.rb'
-  t.rcov = true
-end
-
-# task :spec => :check_dependencies
-
-task :default => :spec
-
-require 'yard'
-YARD::Rake::YardocTask.new
 
 #############################################################################
 #
