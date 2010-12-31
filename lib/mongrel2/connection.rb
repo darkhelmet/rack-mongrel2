@@ -6,8 +6,8 @@ module Mongrel2
   class Connection
     CTX = ZMQ::Context.new(1)
 
-    def initialize(uuid, sub, pub, block = true)
-      @uuid, @sub, @pub, @block = uuid, sub, pub, block
+    def initialize(uuid, sub, pub)
+      @uuid, @sub, @pub = uuid, sub, pub
 
       # Connect to receive requests
       @reqs = CTX.socket(ZMQ::PULL)
@@ -20,7 +20,7 @@ module Mongrel2
     end
 
     def recv
-      msg = @reqs.recv_string(@block ? 0 : ZMQ::NOBLOCK)
+      msg = @reqs.recv_string(0)
       msg.nil? ? nil : Request.parse(msg)
     end
 
