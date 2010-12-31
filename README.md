@@ -24,7 +24,7 @@ Check out the blog post too: http://blog.darkhax.com/2010/10/26/deploying-your-r
 
 ## Thanks!
 
-* Kevin Williams for PULL, specs, and other things.
+* [Kevin Williams](https://github.com/kevwil) for PULL, specs, and other things.
 
 ## Note on Patches/Pull Requests
 
