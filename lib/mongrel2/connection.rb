@@ -25,7 +25,9 @@ module Mongrel2
     end
 
     def reply(req, body, status = 200, headers = {})
-      Response.new(@resp).send_http(req, body, status, headers)
+      resp = Response.new(@resp)
+      resp.send_http(req, body, status, headers)
+      resp.close if req.close?
     end
 
     def close

@@ -32,5 +32,9 @@ module Mongrel2
     def disconnect?
       headers['METHOD'] == 'JSON' && @data['type'] == 'disconnect'
     end
+
+    def close?
+      headers['connection'] == 'close' || headers['VERSION'] == 'HTTP/1.0'
+    end
   end
 end
