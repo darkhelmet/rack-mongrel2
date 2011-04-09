@@ -38,4 +38,4 @@ Check out the blog post too: http://blog.darkhax.com/2010/10/26/deploying-your-r
 
 ## Copyright
 
-Copyright (c) 2010 Daniel Huckstep. See LICENSE for details.
+Copyright (c) 2010, 2011 Daniel Huckstep. See LICENSE for details.
