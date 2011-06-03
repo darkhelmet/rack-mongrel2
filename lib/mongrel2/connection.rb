@@ -4,17 +4,21 @@ require 'mongrel2/response'
 
 module Mongrel2
   class Connection
-    CTX = ZMQ::Context.new(1)
+    @context = nil
+
+    def self.context
+      @context ||= ZMQ::Context.new(1)
+    end
 
     def initialize(uuid, sub, pub)
       @uuid, @sub, @pub = uuid, sub, pub
 
       # Connect to receive requests
-      @reqs = CTX.socket(ZMQ::PULL)
+      @reqs = self.class.context.socket(ZMQ::PULL)
       @reqs.connect(sub)
 
       # Connect to send responses
-      @resp = CTX.socket(ZMQ::PUB)
+      @resp = self.class.context.socket(ZMQ::PUB)
       @resp.connect(pub)
       @resp.setsockopt(ZMQ::IDENTITY, uuid)
     end
@@ -32,7 +36,7 @@ module Mongrel2
 
     def close
       # I think I should be able to just close the context
-      CTX.close rescue nil
+      self.class.context.close rescue nil
     end
   end
 end
