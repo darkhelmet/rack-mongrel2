@@ -42,9 +42,10 @@ module Rack
               'rack.run_once' => false,
               'mongrel2.pattern' => req.headers['PATTERN'],
               'REQUEST_METHOD' => req.headers['METHOD'],
+				      'CONTENT_TYPE' => req.headers['content-type'],
               'SCRIPT_NAME' => script_name,
               'PATH_INFO' => req.headers['PATH'].gsub(script_name, ''),
-              'QUERY_STRING' => req.headers['QUERY'] || req.body || ''
+              'QUERY_STRING' => req.headers['QUERY'] || ''
             }
 
             env['SERVER_NAME'], env['SERVER_PORT'] = req.headers['host'].split(':', 2)
