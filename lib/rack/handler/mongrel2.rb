@@ -7,8 +7,8 @@ module Rack
       class << self
         def run(app, options = {})
           options = {
-            :recv => 'tcp://127.0.0.1:9997' || ENV['RACK_MONGREL2_RECV'],
-            :send => 'tcp://127.0.0.1:9996' || ENV['RACK_MONGREL2_SEND'],
+            :recv => ENV['RACK_MONGREL2_RECV'] || 'tcp://127.0.0.1:9997',
+            :send => ENV['RACK_MONGREL2_SEND'] || 'tcp://127.0.0.1:9996',
             :uuid => ENV['RACK_MONGREL2_UUID']
           }.merge(options)
 
