@@ -1,3 +1,5 @@
+# Abandoned. Contact me if you want to take over this project.
+
 # rack-mongrel2
 
 The only Mongrel2 Rack handler you'll ever need.
